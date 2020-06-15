@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02-class与style</title>
+    <script type="text/javascript" src="lib/vue.js"></script>
+    <style>
+        .red{
+            background: red;
+        }
+        .yellow{
+             background: yellow;
+         }
+        .red.yellow{
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div :class="isActive?'red':'yellow'">我是动态绑定class-三目写法</div>
+        <button @click="handleClick">点我</button>
+        <div :class="classobj">我是动态绑定class-对象写法</div>
+        <button @click="redClick">红开关</button>
+        <button @click="yellowClick">黄开关</button>
+        <div :class="classobj">我是动态绑定class-数组写法</div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:"#box",
+            data:{
+                isActive:true,
+                classobj:{
+                    red:true,
+                    yellow:true
+                }
+            },
+            methods:{
+                handleClick:function(){
+                    this.isActive = !this.isActive;
+                },
+                redClick:function(){
+                    this.classobj.red = !this.classobj.red;
+                },
+                yellowClick:function(){
+                    this.classobj.yellow = !this.classobj.yellow;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
