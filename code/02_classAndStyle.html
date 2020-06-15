@@ -23,7 +23,10 @@
         <div :class="classobj">我是动态绑定class-对象写法</div>
         <button @click="redClick">红开关</button>
         <button @click="yellowClick">黄开关</button>
-        <div :class="classobj">我是动态绑定class-数组写法</div>
+        <div :class="classArray">我是动态绑定class-数组写法</div>
+        <div :style="'background:'+(isActive?'red':'yellow')">我是动态绑定style-三目写法</div>
+        <div :style="styleobj">我是动态绑定style-对象写法</div>
+        <div :style="styleArray">我是动态绑定style-数组写法</div>
     </div>
 
     <script>
@@ -34,7 +37,12 @@
                 classobj:{
                     red:true,
                     yellow:true
-                }
+                },
+                classArray:['red','yellow'],
+                styleobj:{
+                    background:"red"
+                },
+                styleArray:[{background:"red"},{fontSize:"30px"}]
             },
             methods:{
                 handleClick:function(){
