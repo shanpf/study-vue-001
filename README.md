@@ -1,4 +1,4 @@
-#这是一个有用学习VUE的DEMO项目
+# 这是一个用于学习VUE的DEMO项目
 [课程网址](https://www.bilibili.com/video/BV12J41187We)
 ## 代码规范
 由于这以后可能会有多个小伙伴一起维护这个项目
