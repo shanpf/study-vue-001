@@ -12,13 +12,14 @@
         <div v-else>else动态创建和删除</div>
 
         <ul v-if="dataList.length">
-            <li v-for="data in dataList">
-                {{data}}
+            <!-- 这里的ind相当于课程里的index 我是为了测试不同命名对方法取值是否有影响-->
+            <li v-for="(data,ind) in dataList">
+                {{data}}----{{ind}}
             </li>
         </ul>
 
 
-        <button @click="changeImg">click</button>
+        <button @click="changeImg">换图片</button>
         <div v-if="witch===1">
             <img :src="imgUrl1">
         </div>
@@ -28,6 +29,12 @@
         <div v-else>
             <img :src="imgUrl3">
         </div>
+        <!-- 这里的kew相当于课程里的key 我是为了测试不同命名对方法取值是否有影响-->
+        <ul v-for="(data,kew) in dataObj">
+            <li>
+               {{data}}---{{kew}}
+            </li>
+        </ul>
     </div>
         <script>
             var vm = new Vue({
@@ -38,7 +45,12 @@
                     witch:1,
                     imgUrl1:"resources/19_Ceremonial3_8k.jpg",
                     imgUrl2:"resources/1_Adam_8k.jpg",
-                    imgUrl3:"resources/3_trapped3_8k.jpg"
+                    imgUrl3:"resources/3_trapped3_8k.jpg",
+                    dataObj:{
+                        age:"24",
+                        name:"shanpf",
+                        gender:"male"
+                    }
                 },
                 methods:{
                     handleClick:function () {
