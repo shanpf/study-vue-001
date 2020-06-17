@@ -30,9 +30,20 @@
             <img :src="imgUrl3">
         </div>
         <!-- 这里的kew相当于课程里的key 我是为了测试不同命名对方法取值是否有影响-->
-        <ul v-for="(data,kew) in dataObj">
+        <ul v-for="(data,kew) in dataObj" key="data">
             <li>
                {{data}}---{{kew}}
+            </li>
+        </ul>
+        <!-- 这里的kew相当于课程里的key 我是为了测试不同命名对方法取值是否有影响-->
+        <ul>
+            <li v-for="(n,t) in 10">
+                {{n}}----{{t}}
+            </li>
+        </ul>
+        <ul v-for="n in 10">
+            <li >
+                {{n}}
             </li>
         </ul>
     </div>
