@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单控制绑定</title>
+    <script type="text/javascript" src="lib/vue.js"></script>
+</head>
+
+<body>
+<div id="box">
+   <input type="text" v-model="my_text"/>
+    <textarea v-model="my_text"></textarea>
+    <div>
+        {{my_text}}
+        {{isCheck}}
+    </div>
+    <div>
+        <input type="checkbox" v-model="isCheck"/>记录用户名
+    </div>
+
+    <p>你喜欢的运动
+        <input type="checkbox" v-model="checkGroup" value="游泳"/>游泳
+        <input type="checkbox" v-model="checkGroup" value="篮球"/>篮球
+        <input type="checkbox" v-model="checkGroup" value="滑冰"/>滑冰
+        <input type="checkbox" v-model="checkGroup" value="长跑"/>长跑
+    </p>
+    <p>你喜欢的开发语言
+        <input type="radio" v-model="checkLan" value="java"/>java
+        <input type="radio" v-model="checkLan" value="php"/>php
+        <input type="radio" v-model="checkLan" value="js"/>js
+        <input type="radio" v-model="checkLan" value="go"/>go
+    </p>
+    <div>
+        {{checkGroup}}
+        {{checkLan}}
+    </div>
+</div>
+<script>
+    var vm = new Vue({
+        el: "#box",
+        data:{
+            my_text:"",
+            isCheck:false,
+            checkGroup:[],
+            checkLan:""
+    }
+    })
+</script>
+</body>
+</html>
