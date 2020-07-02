@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <script type="text/javascript" src="lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <input type="checkbox" v-model="selectAll" @change="handleSelectAll($event)"/>
+        <ul>
+            <li v-for="data in carDatas">
+            <input type="checkbox" v-model="checkCart" :value="data.id"/>
+             {{data}}
+            </li>
+        </ul>
+        {{checkCart}}
+        <p>总金额：{{ getSum() }}</p>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#box",
+            data:{
+                carDatas:[{
+                    name:"商品1",
+                    price:10,
+                    number:1,
+                    id:"1"
+                },{
+                    name:"商品2",
+                    price:20,
+                    number:2,
+                    id:"2"
+                },{
+                    name:"商品3",
+                    price:30,
+                    number:3,
+                    id:"3"
+                },{
+                    name:"商品4",
+                    price:40,
+                    number:7,
+                    id:"4"
+                },{
+                    name:"商品5",
+                    price:50,
+                    number:2,
+                    id:"5"
+                }],
+                checkCart:[],
+                selectAll:false
+            },
+            methods:{
+                getSum(){
+                    // 初始化总金额
+                    var sum = 0;
+                    // 对所选哪一条进行循环 ids为checkCart中的第几条标识
+                    for(var ids in this.checkCart){
+                        // 按照标识取出所选的id
+                        var id = this.checkCart[ids];
+                        // 循环购物车数据cartid为carDatas中的第几条的标识从0开始
+                        for(var cartid in this.carDatas){
+                            // 取出数据
+                            var cart = this.carDatas[cartid];
+                            // 取出当前购物车的id 和所选要输进行对比
+                            if(cart["id"] === id){
+                                // 如果相同则执行金额累加算法
+                               sum = sum + cart["price"]*cart["number"];
+                               // 由于是单个的匹配循环只要匹配到一次后面的循环就无意义了，直接break到上层循环
+                               break;
+                            }
+                        }
+                    }
+                    return sum;
+                },
+                handleSelectAll(ev){
+                    this.checkCart.splice(0,this.checkCart.length);
+                    if(this.selectAll){
+                        // 循环购物车数据cartid为carDatas中的第几条的标识从0开始
+                        for(var cartid in this.carDatas){
+                            // 取出数据
+                            var cart = this.carDatas[cartid];
+                            this.checkCart.push(cart["id"]);
+                        }
+                    }
+                }
+            }
+        }
+        )
+    </script>
+</body>
