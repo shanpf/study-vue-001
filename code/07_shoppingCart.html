@@ -11,8 +11,11 @@
         <input type="checkbox" v-model="selectAll" @change="handleSelectAll($event)"/>
         <ul>
             <li v-for="data in carDatas">
-            <input type="checkbox" v-model="checkCart" :value="data.id"/>
-             {{data}}
+                <input type="checkbox" v-model="checkCart" :value="data.id"/>
+                {{data}}
+                <button @click="handelDelClick(data.id)">-</button>
+                {{data.number}}
+                <button @click="data.number++">+</button>
             </li>
         </ul>
         {{checkCart}}
@@ -82,6 +85,24 @@
                             // 取出数据
                             var cart = this.carDatas[cartid];
                             this.checkCart.push(cart["id"]);
+                        }
+                    }
+                },
+                handelDelClick(cartId){
+                    for(var id in this.carDatas){
+                        // 取出数据
+                        var cart = this.carDatas[id];
+                        if(cart["id"] === cartId){
+                            if(cart["number"]-1 === 0){
+                                if(confirm("购物车里就一件啦，在删就直接没啦，是否要删除？")){
+                                    this.carDatas.splice(id,1);
+                                } else {
+                                    break
+                                }
+                            } else {
+                                (this.carDatas[id])["number"]--;
+                                break;
+                            }
                         }
                     }
                 }
