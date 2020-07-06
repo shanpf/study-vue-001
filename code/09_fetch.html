@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>fetch请求</title>
+    <script type="text/javascript" src="lib/vue.js"></script>
+</head>
+
+<body>
+    <div id="box">
+        <button @click="handleClick()">请求数据</button>
+        <ur>
+            <li v-for="data in dataList">
+                <h3>{{data.chineseName}}</h3>
+            </li>
+        </ur>
+    </div>
+    <script>
+
+        var vm = new Vue({
+                el: "#box",
+                data:{
+                    dataList:[]
+                },
+                methods: {
+                    handleClick(){
+                        fetch("./json/city.json").then(res=>res.json()).then(res=>{
+                            console.log(res.data);
+                            this.dataList = res.data;
+                        })
+                    }
+                }
+            }
+        )
+    </script>
+</body>
+</html>
