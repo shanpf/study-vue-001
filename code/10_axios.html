@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>axios</title>
+    <script src="lib/axios.min.js"></script>
+    <script type="text/javascript" src="lib/vue.js"></script>
+</head>
+<body>
+<div id="box">
+    <button @click="handleClick()">请求数据</button>
+    <ur>
+        <li v-for="data in dataList">
+            <h3>{{data.chineseName}}</h3>
+        </li>
+    </ur>
+</div>
+<script>
+
+    var vm = new Vue({
+            el: "#box",
+            data:{
+                dataList:[]
+            },
+            methods: {
+                handleClick(){
+                    axios.get("./json/city.json").then(res=>{
+                        console.log(res);
+                        this.dataList = res.data.data;
+                    }).catch(err=>{
+                        console.log(err);
+                    })
+                }
+            }
+        }
+    )
+</script>
+</body>
+</html>
