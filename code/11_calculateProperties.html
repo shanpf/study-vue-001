@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性</title>
+    <!DOCTYPE html>
+    <script src="lib/axios.min.js"></script>
+    <script type="text/javascript" src="lib/vue.js"></script>
+</head>
+<body>
+<div id="box">
+    {{myName.substring(0,1).toUpperCase() + myName.substring(1)}}
+    <p>计算属性：{{getMyName}}</p>
+    <p>普通方法：{{getMyNameMethods()}}</p>
+    <div>
+        <p>计算属性：{{getMyName}}</p>
+        <p>普通方法：{{getMyNameMethods()}}</p>
+    </div>
+</div>
+<script>
+
+    var vm = new Vue({
+            el: "#box",
+            data: {
+                myName: "xiaomi"
+            },
+            computed:{
+                getMyName(){
+                    console.log("计算属性调用");
+                    return this.myName.substring(0,1).toUpperCase() + this.myName.substring(1);
+                }
+            },
+            methods:{
+                getMyNameMethods() {
+                    console.log("普通方法调用");
+                    return this.myName.substring(0,1).toUpperCase() + this.myName.substring(1);
+                }
+            }
+        }
+    )
+</script>
+</body>
+</html>
