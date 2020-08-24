@@ -22,12 +22,21 @@
 					<button>返回</button>
 					navbar
 					<button>主页</button>
+					<child></child>
 				</div>`
 			});
 
+			Vue.component("child",{
+				template:`
+				<div>
+					<button>返回</button>
+					child
+					<button>主页</button>
+				</div>`
+			});
 			new Vue({
 				el:"#box"
-			});
+			});//新建了Vue实例，就相当于创建了 root component
 		</script>
 	</body>
 
