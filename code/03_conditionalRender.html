@@ -1,90 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>条件渲染</title>
-    <script src="lib/vue.js" type="text/javascript"></script>
-</head>
-<body>
-    <div id="box">
-        <button @click="handleClick">click</button>
-        <div v-if="isCreated">if动态创建和删除</div>
-        <div v-else>else动态创建和删除</div>
+	<head>
+		<meta charset="UTF-8">
+		<title>条件渲染</title>
+		<script src="lib/vue.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div id="box">
+			<button @click="handleClick">click</button>
+			<div v-if="isCreated">if动态创建和删除</div>
+			<div v-else>else动态创建和删除</div>
 
-        <ul v-if="dataList.length">
-            <!-- 这里的ind相当于课程里的index 我是为了测试不同命名对方法取值是否有影响-->
-            <li v-for="(data,ind) in dataList">
-                {{data}}----{{ind}}
-            </li>
-        </ul>
+			<ul v-if="dataList.length">
+				<!-- 这里的ind相当于课程里的index 我是为了测试不同命名对方法取值是否有影响-->
+				<li v-for="(data,ind) in dataList">
+					{{data}}----{{ind}}
+				</li>
+			</ul>
 
 
-        <button @click="changeImg">换图片</button>
-        <div v-if="witch===1">
-            <img :src="imgUrl1">
-        </div>
-        <div v-else-if="witch===2">
-            <img :src="imgUrl2">
-        </div>
-        <div v-else>
-            <img :src="imgUrl3">
-        </div>
-        <!-- 这里的kew相当于课程里的key 我是为了测试不同命名对方法取值是否有影响-->
-        <ul v-for="(data,kew) in dataObj" key="data">
-            <li>
-               {{data}}---{{kew}}
-            </li>
-        </ul>
-        <!-- 这里的kew相当于课程里的key 我是为了测试不同命名对方法取值是否有影响-->
-        <ul>
-            <li v-for="(n,t) in 10">
-                {{n}}----{{t}}
-            </li>
-        </ul>
-        <ul v-for="n in 10">
-            <li >
-                {{n}}
-            </li>
-        </ul>
-    </div>
-        <script>
-            var vm = new Vue({
-                el:"#box",
-                data:{
-                    isCreated:false,
-                    dataList:["1111","2222"],
-                    witch:1,
-                    imgUrl1:"resources/19_Ceremonial3_8k.jpg",
-                    imgUrl2:"resources/1_Adam_8k.jpg",
-                    imgUrl3:"resources/3_trapped3_8k.jpg",
-                    dataObj:{
-                        age:"24",
-                        name:"shanpf",
-                        gender:"male"
-                    }
-                },
-                methods:{
-                    handleClick:function () {
-                        this.isCreated = !this.isCreated;
-                        // 模仿取数 判断当前dataList中是否为空
-                        if(this.dataList.length != 0){
-                            // 不为空则置为空
-                            this.dataList.length = 0;
-                        }else{
-                            // 为空则初始化数据
-                            this.dataList=["1111","2222"];
-                        }
-                    },
-                    changeImg:function () {
-                        if(this.witch<3){
-                            this.witch = this.witch + 1;
-                        } else {
-                            this.witch = 1;
-                        }
-                    }
-                }
-            })
-        </script>
-    </div>
-</body>
+			<button @click="changeImg">换图片</button>
+			<div v-if="witch===1">
+				<img :src="imgUrl1">
+			</div>
+			<div v-else-if="witch===2">
+				<img :src="imgUrl2">
+			</div>
+			<div v-else>
+				<img :src="imgUrl3">
+			</div>
+			<!-- 这里的kew相当于课程里的key 我是为了测试不同命名对方法取值是否有影响-->
+			<ul v-for="(data,kew) in dataObj" key="data">
+				<li>
+					{{data}}---{{kew}}
+				</li>
+			</ul>
+			<!-- 这里的kew相当于课程里的key 我是为了测试不同命名对方法取值是否有影响-->
+			<ul>
+				<li v-for="(n,t) in 10">
+					{{n}}----{{t}}
+				</li>
+			</ul>
+			<ul v-for="n in 10">
+				<li>
+					{{n}}
+				</li>
+			</ul>
+		</div>
+		<script>
+			var vm = new Vue({
+				el: "#box",
+				data: {
+					isCreated: false,
+					dataList: ["1111", "2222"],
+					witch: 1,
+					imgUrl1: "resources/19_Ceremonial3_8k.jpg",
+					imgUrl2: "resources/1_Adam_8k.jpg",
+					imgUrl3: "resources/3_trapped3_8k.jpg",
+					dataObj: {
+						age: "24",
+						name: "shanpf",
+						gender: "male"
+					}
+				},
+				methods: {
+					handleClick: function() {
+						this.isCreated = !this.isCreated;
+						// 模仿取数 判断当前dataList中是否为空
+						if (this.dataList.length != 0) {
+							// 不为空则置为空
+							this.dataList.length = 0;
+						} else {
+							// 为空则初始化数据
+							this.dataList = ["1111", "2222"];
+						}
+					},
+					changeImg: function() {
+						if (this.witch < 3) {
+							this.witch = this.witch + 1;
+						} else {
+							this.witch = 1;
+						}
+					}
+				}
+			})
+		</script>
+		</div>
+	</body>
 </html>

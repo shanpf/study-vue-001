@@ -19,10 +19,10 @@
 					my_text: "",
 					dataList: ["aaa", "bbb", "ccc", "ddd", "abb", "cee", "eee"]
 				},
-				computed:{
-					filtrationMy_text(){
-						return this.dataList.filter(item=>{
-						    return item.indexOf(this.my_text)>-1;
+				computed: {
+					filtrationMy_text() {
+						return this.dataList.filter(item => {
+							return item.indexOf(this.my_text) > -1;
 						});
 					}
 				}

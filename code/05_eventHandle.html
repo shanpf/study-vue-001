@@ -1,61 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>事件处理</title>
-    <script src="lib/vue.js" type="text/javascript"></script>
-</head>
-<body>
-    <div id="box">
-        <!-- 不需要传参数 -->
-        <button @click="handleClick">click1</button>
-        <!-- 需要传参数 -->
-        <button @click="handleClick($event)">click2</button>
-        <!-- 逻辑及其简单，这里课程讲错了一点这里不能加this，加了就失效了，你可以试试 -->
-        <button @click="isShow=!isShow">click3</button>
-        <div v-show="isShow">111111111111111</div>
+	<head>
+		<meta charset="UTF-8">
+		<title>事件处理</title>
+		<script src="lib/vue.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div id="box">
+			<!-- 不需要传参数 -->
+			<button @click="handleClick">click1</button>
+			<!-- 需要传参数 -->
+			<button @click="handleClick($event)">click2</button>
+			<!-- 逻辑及其简单，这里课程讲错了一点这里不能加this，加了就失效了，你可以试试 -->
+			<button @click="isShow=!isShow">click3</button>
+			<div v-show="isShow">111111111111111</div>
 
-        <!-- .self 只有点了ul才会触发，如果点子dom冒泡来的则不会触发（相当于私有化） -->
-        <ul @click.self="handleClickUl($event)">
-            <!-- 这个.stop就是事件修饰符的一种，vue在执行事件后会直接执行ev.stopPropagation();阻止冒泡 -->
-            <li @click.stop="handleClickLi($event)">111</li>
-            <li @click="handleClickLi($event)">222</li>
-            <!-- .once 只触发一次，之后立即解绑！ -->
-            <li @click.once="handleClickLi($event)">333</li>
-        </ul>
-        <!-- .prevent 阻止默认行为,相当于ev.preventDefault() -->
-        <a href="https://www.baidu.com" @click.prevent="handleUrl($event)">changePage</a>
+			<!-- .self 只有点了ul才会触发，如果点子dom冒泡来的则不会触发（相当于私有化） -->
+			<ul @click.self="handleClickUl($event)">
+				<!-- 这个.stop就是事件修饰符的一种，vue在执行事件后会直接执行ev.stopPropagation();阻止冒泡 -->
+				<li @click.stop="handleClickLi($event)">111</li>
+				<li @click="handleClickLi($event)">222</li>
+				<!-- .once 只触发一次，之后立即解绑！ -->
+				<li @click.once="handleClickLi($event)">333</li>
+			</ul>
+			<!-- .prevent 阻止默认行为,相当于ev.preventDefault() -->
+			<a href="https://www.baidu.com" @click.prevent="handleUrl($event)">changePage</a>
 
-        <input type="text" @keyup.enter="handleEnterUp()" v-model="my_text"/>
-    </div>
-    <script type="text/javascript">
-        var vm = new Vue({
-            el:"#box",
-            data:{
-               isShow:false,
-                my_text:""
-            },
-            methods:{
-                handleClick(ev) {
-                    this.isShow = !this.isShow;
-                },
-                handleClickUl(ev) {
-                    console.log("handleClickUl");
-                },
-                handleClickLi(ev){
-                    //停止冒泡的原生js方法
-                    //ev.stopPropagation();
-                    console.log("handleClickLi");
-                },
-                handleUrl(ev){
-                    //ev.preventDefault();
-                    console.log("handleUrl");
-                },
-                handleEnterUp(ev){
-                    console.log("记录"+this.my_text);
-                }
-            }
-        });
-    </script>
-</body>
+			<input type="text" @keyup.enter="handleEnterUp()" v-model="my_text" />
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#box",
+				data: {
+					isShow: false,
+					my_text: ""
+				},
+				methods: {
+					handleClick(ev) {
+						this.isShow = !this.isShow;
+					},
+					handleClickUl(ev) {
+						console.log("handleClickUl");
+					},
+					handleClickLi(ev) {
+						//停止冒泡的原生js方法
+						//ev.stopPropagation();
+						console.log("handleClickLi");
+					},
+					handleUrl(ev) {
+						//ev.preventDefault();
+						console.log("handleUrl");
+					},
+					handleEnterUp(ev) {
+						console.log("记录" + this.my_text);
+					}
+				}
+			});
+		</script>
+	</body>
 </html>
