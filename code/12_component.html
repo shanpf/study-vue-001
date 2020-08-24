@@ -20,10 +20,15 @@
 				template:`
 				<div>
 					<button>返回</button>
-					navbar
+					{{navbarname}}
 					<button>主页</button>
 					<child></child>
-				</div>`
+				</div>`,
+				data(){
+					return {
+						navbarname="navbarname"
+					};
+				}
 			});
 
 			Vue.component("child",{
